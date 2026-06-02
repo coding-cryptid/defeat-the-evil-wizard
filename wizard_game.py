@@ -155,8 +155,8 @@ def battle(player, wizard):
             print(f"{player.name} has been defeated!")
             break
 
-    if wizard.health <= 0:
-        print(f"{wizard.name} has been defeated by {player.name}!")
+        if wizard.health <= 0:
+            print(f"{wizard.name} has been defeated by {player.name}!")
 
 def main():
     player = create_character()
