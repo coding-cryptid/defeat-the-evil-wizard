@@ -1,3 +1,5 @@
+import random
+
 # Base Character class
 class Character:
     def __init__(self, name, health, attack_power):
@@ -12,9 +14,13 @@ class Character:
             opponent.dodging = False
             print(f"{opponent.name} dodges the attack and takes no damage!")
             return
-        opponent.health -= self.attack_power
-        print(f"{self.name} attacks {opponent.name} for {self.attack_power} damage!")
-    
+        damage = random.randint(
+            int(self.attack_power * 0.8),
+            int(self.attack_power * 1.2)
+        )
+        opponent.health -= damage
+        print(f"{self.name} attacks {opponent.name} for {damage} damage!")
+        
     def heal(self):
         heal_amount = 20
         self.health = min(self.max_health, self.health + heal_amount)
