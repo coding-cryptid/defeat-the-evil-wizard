@@ -8,9 +8,9 @@ class Character:
         self.dodging = False
 
     def attack(self, opponent):
-        if self.dodging:
-            self.dodging = False
-            print(f"{self.name} dodges the attack and takes no damage!")
+        if opponent.dodging:
+            opponent.dodging = False
+            print(f"{opponent.name} dodges the attack and takes no damage!")
             return
         opponent.health -= self.attack_power
         print(f"{self.name} attacks {opponent.name} for {self.attack_power} damage!")
@@ -96,7 +96,13 @@ def battle(player, wizard):
         if choice == '1':
             player.attack(wizard)
         elif choice == '2':
-            pass  # Implement special abilities
+            choose_ability = input('Choose special ability (1 for "Quick Shot", 2 for "Evade"): ')
+            if choose_ability == '1' and isinstance(player, Archer):
+                player.special_attack(wizard)
+            elif choose_ability == '2' and isinstance(player, Archer):
+                player.special_defense()
+            else:
+                print("Invalid special ability choice.")
         elif choice == '3':
             pass  # Implement heal method
         elif choice == '4':
