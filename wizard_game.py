@@ -60,11 +60,6 @@ class EvilWizard(Character):
         self.health += 5
         print(f"{self.name} regenerates 5 health! Current health: {self.health}")
 
-# Create Archer class
-
-# Create Paladin class 
-
-
 
 def create_character():
     print("Choose your character class:")
