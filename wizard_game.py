@@ -14,8 +14,6 @@ class Character:
             return
         opponent.health -= self.attack_power
         print(f"{self.name} attacks {opponent.name} for {self.attack_power} damage!")
-        if opponent.health <= 0:
-            print(f"{opponent.name} has been defeated!")
     
     def heal(self):
         heal_amount = 20
@@ -145,10 +143,11 @@ def battle(player, wizard):
             player.heal()
         elif choice == '4':
             player.display_stats()
+            pass
         else:
             print("Invalid choice. Try again.")
 
-        if wizard.health > 0:
+        if wizard.health > 0 and choice != '4':
             wizard.regenerate()
             wizard.attack(player)
 
@@ -157,7 +156,7 @@ def battle(player, wizard):
             break
 
     if wizard.health <= 0:
-        print(f"The wizard {wizard.name} has been defeated by {player.name}!")
+        print(f"{wizard.name} has been defeated by {player.name}!")
 
 def main():
     player = create_character()
