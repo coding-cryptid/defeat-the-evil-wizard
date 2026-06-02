@@ -35,7 +35,7 @@ class Warrior(Character):
         super().__init__(name, health=140, attack_power=25)
     
     def special_attack(self, opponent):
-        damage = self.attack_power * 2
+        damage = self.attack_power * 3
         opponent.health -= damage
         print(f"{self.name} uses a powerful strike (Axe Strike) on {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
@@ -51,7 +51,7 @@ class Mage(Character):
         super().__init__(name, health=100, attack_power=35)
     
     def special_attack(self, opponent):
-        damage = self.attack_power * 2
+        damage = self.attack_power * 3
         opponent.health -= damage
         print(f"{self.name} casts a powerful spell (Lightning Bolt) on {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
@@ -83,7 +83,7 @@ class Paladin(Character):
         super().__init__(name, health=160, attack_power=10)
     
     def special_attack(self, opponent):
-        damage = self.attack_power * 2
+        damage = self.attack_power * 4
         opponent.health -= damage
         print(f"{self.name} uses a holy strike (Smite) on {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
