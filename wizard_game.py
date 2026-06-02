@@ -31,7 +31,7 @@ class Warrior(Character):
         super().__init__(name, health=140, attack_power=25)
     
     def special_attack(self, opponent):
-        damage = self.attack_power * 4
+        damage = self.attack_power * 3
         opponent.health -= damage
         print(f"{self.name} uses a powerful strike (Axe Strike) on {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
@@ -45,6 +45,17 @@ class Warrior(Character):
 class Mage(Character):
     def __init__(self, name):
         super().__init__(name, health=100, attack_power=35)
+    
+    def special_attack(self, opponent):
+        damage = self.attack_power * 3
+        opponent.health -= damage
+        print(f"{self.name} casts a powerful spell (Lightning Bolt) on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
+    
+    def special_defense(self):
+        self.dodging = True
+        print(f"{self.name} uses a magical barrier (Magic Shield) to absorb the next attack! Current health: {self.health}")
 
 # Archer class (inherits from Character)
 class Archer(Character):
@@ -66,6 +77,17 @@ class Archer(Character):
 class Paladin(Character):
     def __init__(self, name):
         super().__init__(name, health=160, attack_power=10)
+    
+    def special_attack(self, opponent):
+        damage = self.attack_power * 4
+        opponent.health -= damage
+        print(f"{self.name} uses a holy strike (Smite) on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
+    
+    def special_defense(self):
+        self.dodging = True
+        print(f"{self.name} uses divine protection (Divine Shield) to block the next attack! Current health: {self.health}")
 
 # EvilWizard class (inherits from Character)
 class EvilWizard(Character):
@@ -112,10 +134,10 @@ def battle(player, wizard):
         if choice == '1':
             player.attack(wizard)
         elif choice == '2':
-            choose_ability = input('Choose special ability (1 for "Quick Shot", 2 for "Evasive Roll"): ')
-            if choose_ability == '1' and isinstance(player, Archer):
+            choose_ability = input('Choose special ability (1 for Special Attack, 2 for Special Defense): ')
+            if choose_ability == '1' and isinstance(player, (Warrior, Mage, Archer, Paladin)):
                 player.special_attack(wizard)
-            elif choose_ability == '2' and isinstance(player, Archer):
+            elif choose_ability == '2' and isinstance(player, (Warrior, Mage, Archer, Paladin)):
                 player.special_defense()
             else:
                 print("Invalid special ability choice.")
