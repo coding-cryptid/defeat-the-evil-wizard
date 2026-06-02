@@ -39,7 +39,7 @@ class Warrior(Character):
     
     def special_defense(self):
         self.dodging = True
-        print(f"{self.name} uses a defensive stance to reduce incoming damage! Current health: {self.health}")
+        print(f"{self.name} uses a defensive stance (Shield Block) to reduce incoming damage! Current health: {self.health}")
 
 # Mage class (inherits from Character)
 class Mage(Character):
@@ -60,7 +60,7 @@ class Archer(Character):
     
     def special_defense(self):
         self.dodging = True
-        print(f"{self.name} uses evasive maneuvers to dodge the next attack! Current health: {self.health}")
+        print(f"{self.name} uses evasive maneuvers (Evasive Roll) to dodge the next attack! Current health: {self.health}")
 
 # Paladin class (inherits from Character)
 class Paladin(Character):
@@ -112,7 +112,7 @@ def battle(player, wizard):
         if choice == '1':
             player.attack(wizard)
         elif choice == '2':
-            choose_ability = input('Choose special ability (1 for "Quick Shot", 2 for "Evade"): ')
+            choose_ability = input('Choose special ability (1 for "Quick Shot", 2 for "Evasive Roll"): ')
             if choose_ability == '1' and isinstance(player, Archer):
                 player.special_attack(wizard)
             elif choose_ability == '2' and isinstance(player, Archer):
@@ -120,7 +120,7 @@ def battle(player, wizard):
             else:
                 print("Invalid special ability choice.")
         elif choice == '3':
-            pass  # Implement heal method
+            player.heal()
         elif choice == '4':
             player.display_stats()
         else:
