@@ -29,6 +29,17 @@ class Character:
 class Warrior(Character):
     def __init__(self, name):
         super().__init__(name, health=140, attack_power=25)
+    
+    def special_attack(self, opponent):
+        damage = self.attack_power * 4
+        opponent.health -= damage
+        print(f"{self.name} uses a powerful strike (Axe Strike) on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
+    
+    def special_defense(self):
+        self.dodging = True
+        print(f"{self.name} uses a defensive stance to reduce incoming damage! Current health: {self.health}")
 
 # Mage class (inherits from Character)
 class Mage(Character):
@@ -43,7 +54,7 @@ class Archer(Character):
     def special_attack(self, opponent):
         damage = self.attack_power * 2
         opponent.health -= damage
-        print(f"{self.name} uses double arrow attack on {opponent.name} for {damage} damage!")
+        print(f"{self.name} uses double arrow attack (Quick Shot) on {opponent.name} for {damage} damage!")
         if opponent.health <= 0:
             print(f"{opponent.name} has been defeated!")
     
