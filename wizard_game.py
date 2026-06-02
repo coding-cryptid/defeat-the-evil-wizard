@@ -20,7 +20,7 @@ class Character:
         )
         opponent.health -= damage
         print(f"{self.name} attacks {opponent.name} for {damage} damage!")
-        
+
     def heal(self):
         heal_amount = 20
         self.health = min(self.max_health, self.health + heal_amount)
@@ -99,7 +99,7 @@ class EvilWizard(Character):
         super().__init__(name, health=150, attack_power=15)
 
     def regenerate(self):
-        self.health += 5
+        self.health = min(self.max_health, self.health + 5)
         print(f"{self.name} regenerates 5 health! Current health: {self.health}")
 
 
