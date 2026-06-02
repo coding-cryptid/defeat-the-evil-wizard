@@ -8,9 +8,9 @@ class Character:
         self.dodging = False
 
     def attack(self, opponent):
-        if opponent.dodging:
-            opponent.dodging = False
-            print(f"{opponent.name} dodges the attack and takes no damage!")
+        if self.dodging:
+            self.dodging = False
+            print(f"{self.name} dodges the attack and takes no damage!")
             return
         opponent.health -= self.attack_power
         print(f"{self.name} attacks {opponent.name} for {self.attack_power} damage!")
