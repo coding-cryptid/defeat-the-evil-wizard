@@ -4,9 +4,14 @@ class Character:
         self.name = name
         self.health = health
         self.attack_power = attack_power
-        self.max_health = health  
+        self.max_health = health
+        self.dodging = False
 
     def attack(self, opponent):
+        if opponent.dodging:
+            opponent.dodging = False
+            print(f"{opponent.name} dodges the attack and takes no damage!")
+            return
         opponent.health -= self.attack_power
         print(f"{self.name} attacks {opponent.name} for {self.attack_power} damage!")
         if opponent.health <= 0:
@@ -29,6 +34,17 @@ class Mage(Character):
 class Archer(Character):
     def __init__(self, name):
         super().__init__(name, health=120, attack_power=20)
+
+    def special_attack(self, opponent):
+        damage = self.attack_power * 2
+        opponent.health -= damage
+        print(f"{self.name} uses double arrow attack on {opponent.name} for {damage} damage!")
+        if opponent.health <= 0:
+            print(f"{opponent.name} has been defeated!")
+    
+    def special_defense(self):
+        self.dodging = True
+        print(f"{self.name} uses evasive maneuvers to dodge the next attack! Current health: {self.health}")
 
 # Paladin class (inherits from Character)
 class Paladin(Character):
@@ -65,9 +81,9 @@ def create_character():
     elif class_choice == '2':
         return Mage(name)
     elif class_choice == '3':
-        pass  # Implement Archer class
+        return Archer(name)
     elif class_choice == '4':
-        pass  # Implement Paladin class
+        return Paladin(name)
     else:
         print("Invalid choice. Defaulting to Warrior.")
         return Warrior(name)
